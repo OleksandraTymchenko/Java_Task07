@@ -1,6 +1,8 @@
 package com.alextym.task07;
 
 public class Main {
+
+
     static void printShapes(Shape[] shapes) {
         for (Shape obj : shapes) {
             System.out.println(obj);
@@ -23,7 +25,7 @@ public class Main {
         return Square;
     }
 
-    static double[] calcUniqueShapesSquare(Shape[] shapes) {
+    static double[] calcUniqueShapesSquareArray(Shape[] shapes) {
         double circleSquare = 0;
         double triangleSquare = 0;
         double rectangleSquare = 0;
@@ -47,6 +49,17 @@ public class Main {
         return specificSquares;
     }
 
+    static double calcSpecificSquare(Shape[] shapes, String str){
+        double square = 0.0;
+        for(Shape elem: shapes){
+            if(elem.getClass().getSimpleName().equals(str)){
+                square += elem.calcArea();
+            }
+        }
+        return square;
+
+    }
+
     public static void main(String[] args) {
         Shape[] shapes = {new Rectangle("blue", 10, 20), new Rectangle("pink", 15, 25),
                 new Rectangle("red", 30, 20), new Rectangle("white", 40, 10),
@@ -56,7 +69,10 @@ public class Main {
         printShapes(shapes);
         calcShapesSquare(shapes);
         calcAllShapesSquare(shapes);
-        calcUniqueShapesSquare(shapes);
+        calcUniqueShapesSquareArray(shapes);
+        System.out.println("Triangle square " + calcSpecificSquare(shapes, "Triangle"));
+
+
     }
 }
 
